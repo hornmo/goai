@@ -1,9 +1,12 @@
 apply plugin: 'groovy'
 apply plugin:'application'
+apply plugin: 'maven-publish'
+
+
+// file:///home/ibbo/.gvm/gradle/1.10/docs/userguide/publishing_maven.html
 
 mainClassName = 'org.gokb.client.DiffNotifier'
-defaultTasks 'clean', 'build', 'uberjar'
-
+defaultTasks 'clean', 'build'
  
 repositories {
   mavenCentral()
@@ -24,3 +27,22 @@ task uberjar(type: Jar) {
         attributes 'Main-Class': 'org.gokb.client.DiffNotifier'
     }
 }
+
+publishing {
+    publications {
+        goai(MavenPublication) {
+            groupId 'com.k-int'
+            version '1.0'
+            artifactId 'goai'
+
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "$buildDir/repo" // change to point to your repo, e.g. http://my.org/repo
+            // url "http://maven.k-int.com/nexus" // change to point to your repo, e.g. http://my.org/repo
+        }
+    }
+}
+
