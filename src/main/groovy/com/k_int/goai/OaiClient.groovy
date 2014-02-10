@@ -1,4 +1,4 @@
-package org.gokb.client
+package com.k_int.goai
 
 import groovyx.net.http.*
 import static groovyx.net.http.ContentType.*
