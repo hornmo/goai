@@ -40,8 +40,13 @@ publishing {
     }
     repositories {
         maven {
-            url "$buildDir/repo" // change to point to your repo, e.g. http://my.org/repo
+            // url "$buildDir/repo" // change to point to your repo, e.g. http://my.org/repo
             // url "http://maven.k-int.com/nexus" // change to point to your repo, e.g. http://my.org/repo
+            url mavenServer+mavenReleases
+            credentials {
+                username = repoUsername
+                password = repoPassword
+            }
         }
     }
 }
