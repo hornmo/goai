@@ -6,7 +6,12 @@ import static groovyx.net.http.Method.*
 
 public class OaiClient {
 
-  public getChangesSince(host, onRecordClosure) {
+  String host
+
+  public OaiClient() {
+  }
+
+  public getChangesSince(datestamp, metadataPrefix, processing_closure) {
     println("Get latest changes");
 
     def http = new HTTPBuilder( host )
@@ -25,7 +30,7 @@ public class OaiClient {
           uri.query = [ verb:'ListRecords', resumptionToken: resumption ]
         }
         else {
-          uri.query = [ verb:'ListRecords', metadataPrefix: 'gokb' ]
+          uri.query = [ verb:'ListRecords', metadataPrefix: metadataPrefix ]
         }
   
         // response handler for a success response code:
@@ -36,15 +41,7 @@ public class OaiClient {
             // println("Record id...${r.'header'.'identifier'}");
             // println("Package Name: ${r.metadata.package.packageName}");
             // println("Package Id: ${r.metadata.package.packageId}");
-
-            // GokbPackageDTO dto = new GokbPackageDTO()
-            // dto.packageId=r.metadata.package.packageId.text();
-            // dto.packageName=r.metadata.package.packageName.text();
-
-            // r.metadata.package.packageTitles.TIP.each { pt ->
-            // }
-
-            // notificationTarget.notifyChange(dto)
+            processing_closure.call(r);
           }
 
           if ( xml.'ListRecords'.'resumptionToken'.size() == 1 ) {
