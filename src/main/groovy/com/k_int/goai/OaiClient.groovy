@@ -13,6 +13,7 @@ public class OaiClient {
 
   public getChangesSince(datestamp, metadataPrefix, processing_closure) {
     println("Get latest changes");
+    def sdf = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
     def http = new HTTPBuilder( host )
 
@@ -31,6 +32,10 @@ public class OaiClient {
         }
         else {
           uri.query = [ verb:'ListRecords', metadataPrefix: metadataPrefix ]
+          if ( datestamp ) {
+            uri.query.from = sdf.format(datestamp)
+            println("Get records since ${uri.query.from}");
+          }
         }
   
         // response handler for a success response code:
