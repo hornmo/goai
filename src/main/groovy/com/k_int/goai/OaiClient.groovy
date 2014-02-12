@@ -34,7 +34,7 @@ public class OaiClient {
           uri.query = [ verb:'ListRecords', metadataPrefix: metadataPrefix ]
           if ( datestamp ) {
             uri.query.from = sdf.format(datestamp)
-            println("Get records since ${uri.query.from}");
+            println("Get records since ${datestamp} formatted as ${uri.query.from}");
           }
         }
   
