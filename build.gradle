@@ -38,7 +38,7 @@ publishing {
     publications {
         goai(MavenPublication) {
             groupId 'com.k-int'
-            version '1.0-SNAPSHOT'
+            version '1.0'
             artifactId 'goai'
 
             from components.java
@@ -48,8 +48,8 @@ publishing {
         maven {
             // url "$buildDir/repo" // change to point to your repo, e.g. http://my.org/repo
             // url "http://maven.k-int.com/nexus" // change to point to your repo, e.g. http://my.org/repo
-            // url mavenServer+mavenReleases
-            url mavenServer+mavenSnapshots
+            url mavenServer+mavenReleases
+            // url mavenServer+mavenSnapshots
             credentials {
                 username = repoUsername
                 password = repoPassword
