@@ -23,7 +23,7 @@ public class OaiClient {
 
     // perform a GET request, expecting JSON response data
     while ( more ) {
-      println("Make http request..");
+      println("com.k_int.goai.OaiClient::getChangesSince - Make http request..");
 
       http.request( GET, XML ) {
         uri.path = '/gokb/oai/packages'
@@ -57,7 +57,8 @@ public class OaiClient {
 
         // handler for any failure status code:
         response.failure = { resp ->
-          println "Unexpected error: ${resp.statusLine.statusCode} : ${resp.statusLine.reasonPhrase}"
+          println "Unexpected error: ${resp.statusLine.statusCode} : ${resp.statusLine.reasonPhrase}. Set more=false"
+          more=false
         }
       }
       println("Endloop");
