@@ -38,7 +38,7 @@ publishing {
     publications {
         goai(MavenPublication) {
             groupId 'com.k-int'
-            version '1.0'
+            version '1.0.1'
             artifactId 'goai'
 
             from components.java
