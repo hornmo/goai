@@ -26,7 +26,8 @@ public class OaiClient {
       println("com.k_int.goai.OaiClient::getChangesSince - Make http request..");
 
       http.request( GET, XML ) {
-        uri.path = '/gokb/oai/packages'
+        // Use the default path specified in the host string
+        // uri.path = 
         if ( resumption ) {
           uri.query = [ verb:'ListRecords', resumptionToken: resumption ]
         }
