@@ -47,7 +47,7 @@ public class OaiClient {
             processing_closure.call(r);
           }
 
-          if ( xml.'ListRecords'.'resumptionToken'.size() == 1 ) {
+          if ( xml.'ListRecords'.'resumptionToken'.size() == 1 && xml.'ListRecords'.'resumptionToken'.text()?.size() > 0) {
             resumption=xml.'ListRecords'.'resumptionToken'.text()
             println("Iterate with resumption : ${resumption}");
           }
