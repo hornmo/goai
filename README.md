@@ -14,7 +14,7 @@ gradle publish
 
 Add the following to ~/.grade/gradle.properties
 
-    mavenServer=http://projects.k-int.com/
-    mavenReleases=nexus-webapp-1.4.0/content/repositories/releases
+    mavenServer=http://nexus.k-int.com/
+    mavenReleases=content/repositories/releases
     repoUsername=nexus_username_with_upload_perm
     repoPassword=nexus_pass_for_user
